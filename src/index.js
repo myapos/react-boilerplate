@@ -1,10 +1,8 @@
-import ReactDOM from 'react-dom';
-import App from './components/App';
+import ReactDOM from "react-dom";
+import App from "./components/App";
 
-const element = document.getElementById('root');
+const element = document.getElementById("root");
 
-const myName = 'myros';
-
-const myMainComponent = App(myName);
+const myMainComponent = App();
 
 ReactDOM.render(myMainComponent, element);
