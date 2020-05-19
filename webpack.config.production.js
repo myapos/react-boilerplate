@@ -1,13 +1,13 @@
-const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin'); // installed via npm
+const webpack = require("webpack");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin"); // installed via npm
 
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const path = require('path');
-const config = require('./webpack.config');
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const path = require("path");
+const config = require("./webpack.config");
 
 // Reflect.deleteProperty(config, 'devServer');
-Reflect.deleteProperty(config, 'plugins');
-Reflect.deleteProperty(config.module, 'rules');
+Reflect.deleteProperty(config, "plugins");
+Reflect.deleteProperty(config.module, "rules");
 
 // https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1
 // https://hackernoon.com/reduce-webpack-bundle-size-for-production-880bb6b2c72f
@@ -48,9 +48,9 @@ const uglifyOptions = {
 };
 
 config.output = {
-  filename: 'bundle.js',
-  chunkFilename: 'bundle.[chunkhash].js',
-  path: path.resolve(__dirname, 'dist'),
+  filename: "bundle.js",
+  chunkFilename: "bundle.[chunkhash].js",
+  path: path.resolve(__dirname, "dist"),
 };
 
 config.devtool = false;
@@ -60,30 +60,30 @@ config.module.rules = [
     test: /\.js$/,
     exclude: /node_modules/,
     use: {
-      loader: 'babel-loader',
+      loader: "babel-loader",
     },
   },
   {
     test: /\.css$/,
-    use: ['style-loader', 'css-loader'],
+    use: ["style-loader", "css-loader"],
   },
 ];
 
-config.mode = 'production';
+config.mode = "production";
 
 Object.assign(config.output, {
-  path: path.resolve(__dirname, 'dist'),
-  publicPath: '/dist/',
+  path: path.resolve(__dirname, "dist"),
+  publicPath: "/dist/",
 });
 
 config.plugins = [
-  new CleanWebpackPlugin(['dist']),
+  new CleanWebpackPlugin(),
   new UglifyJsPlugin({
     uglifyOptions,
   }),
   new webpack.ProvidePlugin({
-    'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch',
-    Promise: 'es6-promise', // <============ add Promises for IE !!!
+    fetch: "imports?this=>global!exports?global.fetch!whatwg-fetch",
+    Promise: "es6-promise", // <============ add Promises for IE !!!
   }),
   // new ExtractTextPlugin('player.css'),
   new webpack.BannerPlugin({
@@ -91,6 +91,6 @@ config.plugins = [
   }),
 ];
 
-Reflect.deleteProperty(config, 'devServer');
+Reflect.deleteProperty(config, "devServer");
 
 module.exports = config;
