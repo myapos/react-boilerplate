@@ -15,7 +15,7 @@ module.exports = merge(common, {
     noInfo: false,
     compress: true,
     port: PORT,
-    publicPath: `http://localhost:${PORT}/dist/`,
+    publicPath: `http://localhost:${PORT}/`,
     // historyApiFallback: true,
     historyApiFallback: {
       disableDotRule: true,
@@ -24,9 +24,10 @@ module.exports = merge(common, {
     headers: { "Access-Control-Allow-Origin": "*" },
   },
   output: {
+    publicPath: "./",
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
-    publicPath: `http://localhost:${PORT}/`,
+    filename: "[name].bundle.js",
+    chunkFilename: "[name].bundle.js",
   },
   plugins: [
     new webpack.DefinePlugin({
