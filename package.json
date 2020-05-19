@@ -5,8 +5,8 @@
   "author": "Myron Apostolakis",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --mode development --hot",
-    "build": "webpack --mode production --config webpack.config.production.js",
+    "start": "webpack-dev-server --config webpack.dev.js --mode development --hot",
+    "build": "webpack --mode production --config webpack.prod.js",
     "test": "jest",
     "clean:install": "rm -rf node_modules && npm cache clean --force && npm install",
     "update:packages:ncu": "ncu -u && npm update && npm run clean:install"
@@ -54,17 +54,18 @@
     "lint-staged": "^10.2.4",
     "mini-css-extract-plugin": "^0.9.0",
     "npm-check-updates": "^6.0.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
     "platform": "^1.3.5",
     "polyfills-webpack-plugin": "^0.1.3",
     "style-loader": "^1.2.1",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
-    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.43.0",
     "webpack-bundle-analyzer": "^3.7.0",
     "webpack-cli": "^3.3.11",
     "webpack-core": "^0.6.9",
     "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^4.2.2",
     "whatwg-fetch": "^3.0.0"
   }
 }
